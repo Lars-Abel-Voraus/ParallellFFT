@@ -476,49 +476,4 @@ void main(int argc, char** argv) {
 }
 
 
-/*
-// Not uesed - reqursive fft
-double complex* fftp_rec(double complex * x,int N){
 
-
-  //Input: vector x, we wish to compute the fourier transform of.
-  //Output: the fourier transform of x.
-
-
-  double complex omega_N = cexp((-2*I*Pi)/N);
-
-  // N == 1 means end of recursion
-  double complex* returnVec = malloc(N * sizeof(double complex));
-
-  if(N==1){
-    returnVec[0] = x[0] + 0*I; // make it complex
-  }
-  else{
-    double complex w[N/2];
-    double complex evenIndex_x[N/2];
-    double complex oddIndex_x[N/2];
-
-    for(int ind = 0; ind < N/2; ind++){
-      complex double k = ind + 0*I;
-      w[ind] = cpow(omega_N, k);
-      oddIndex_x[ind] = x[2*ind + 1];
-      evenIndex_x[ind] = x[2*ind];
-    }
-
-    double complex* u = fftp_rec(evenIndex_x, N/2);
-    double complex* v_ = fftp_rec(oddIndex_x, N/2); // will be dot multipled with w
-
-    // Dot multiply v_ with w and create return vec
-    double complex v;
-    for(int ind = 0; ind < N/2; ind++){
-      v = w[ind]*v_[ind];
-      returnVec[ind] = u[ind] + v;
-      returnVec[N/2 + ind] = u[ind] - v;
-    }
-  }
-
-  return returnVec;
-
-}
-
-*/
